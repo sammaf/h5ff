@@ -9,3 +9,8 @@ create file HDF5
 view FarField
 
 ./h5ff.py -i ant.hdf
+
+
+view File HDF5
+
+h5dump ant.hdf
