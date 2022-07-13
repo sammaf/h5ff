@@ -21,13 +21,14 @@ def main():
     infos = []
     for r in rez:
         inf = json.dumps({
-            "freq": r["freq"]*1e6, 
-            "nPhi": r["rp"][0], 
-            "nTheta": r["rp"][1],
-            "PhiBegin": r["rp"][2], 
-            "ThetaBegin": r["rp"][3],
-            "PhiStep": r["rp"][4], 
-            "ThetaStep": r["rp"][5]
+            "type" : "regular",   # тип ДН на регулярной сетка
+            "freq": r["freq"]*1e6,   # частота в Гц
+            "nPhi": r["rp"][0],      # число точек по Phi  
+            "nTheta": r["rp"][1],    # число точек по Theta
+            "PhiBegin": r["rp"][2],  # начальный угол Phi
+            "ThetaBegin": r["rp"][3],# начальный угол Theta
+            "PhiStep": r["rp"][4],   # шаг по Phi
+            "ThetaStep": r["rp"][5]  # шаг по Theta
             })
         infos.append(inf)
     h5d = h5.create_dataset("{0}/infos".format(farField), data=infos) #np.reshape(a[1],(a[0].size,3)))    
