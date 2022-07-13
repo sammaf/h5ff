@@ -32,13 +32,15 @@ def main():
             })
         infos.append(inf)
     h5d = h5.create_dataset("{0}/infos".format(farField), data=infos) #np.reshape(a[1],(a[0].size,3)))    
-    
+    # каждой i-ой строке в infos соответствует датасет ds_i (ds_0, ds_1, ...) 
     for i,r in enumerate(rez):
-        
+        # phi theta re(Etheta) im(Etheta) re(Ephi) im(Ephi) 
         Etheta = r["E_Theta_M"]*np.exp(1j*np.deg2rad(r["E_Theta_P"]))
         Ephi = r["E_Phi_M"]*np.exp(1j*np.deg2rad(r["E_Phi_P"]))
         t = np.c_[r["aPhi"],r["aThet"],np.real(Etheta),np.imag(Etheta),np.real(Ephi),np.imag(Ephi)]
         h5d = h5.create_dataset("{0}/ds_{1}".format(farField,i), data=t)
+
+
         
 
 if __name__ == '__main__':
