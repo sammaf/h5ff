@@ -6,6 +6,6 @@ create file HDF5
 ./nech5.py -i ant.out -o ant.hdf
 
 
-viev FarField
+view FarField
 
 ./h5ff.py -i ant.hdf
