@@ -57,7 +57,8 @@ def main():
     for i,f in enumerate(infos):
         nPhi = f["nPhi"]
         nTheta = f["nTheta"]
-        ds = np.array(h5[("{0}/ds_{1}".format(farField,i))][:])
+        _ds = np.array(h5[("{0}/ds_{1}".format(farField,i))][:])
+        ds = np.reshape(_ds,(-1,6))
         aPhi = np.reshape(np.deg2rad(ds[:,0]),(nTheta,nPhi))
         aTheta = np.reshape(np.deg2rad(ds[:,1]),(nTheta,nPhi))
         ETheta = np.reshape(ds[:,2]+1j*ds[:,3],(nTheta,nPhi))

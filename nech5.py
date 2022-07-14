@@ -21,7 +21,7 @@ def main():
     infos = []
     for r in rez:
         inf = json.dumps({
-            "type" : "regular",   # тип ДН на регулярной сетка
+            "type" : "regular",      # тип ДН на регулярной сетка
             "freq": r["freq"]*1e6,   # частота в Гц
             "nPhi": r["rp"][0],      # число точек по Phi  
             "nTheta": r["rp"][1],    # число точек по Theta
@@ -38,6 +38,7 @@ def main():
         Etheta = r["E_Theta_M"]*np.exp(1j*np.deg2rad(r["E_Theta_P"]))
         Ephi = r["E_Phi_M"]*np.exp(1j*np.deg2rad(r["E_Phi_P"]))
         t = np.c_[r["aPhi"],r["aThet"],np.real(Etheta),np.imag(Etheta),np.real(Ephi),np.imag(Ephi)]
+        tt = t.ravel() # преобразование иг матрицы в вектор
         h5d = h5.create_dataset("{0}/ds_{1}".format(farField,i), data=t)
 
 
